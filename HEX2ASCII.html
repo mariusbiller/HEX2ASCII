@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- #BeginTemplate "../../rapidtables.dwt" -->
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/lib/rapidz.css">
+<link rel="apple-touch-icon" sizes="180x180" href="/lib/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/lib/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/lib/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/lib/favicon/manifest.json">
+<link rel="mask-icon" href="/lib/favicon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/lib/favicon/favicon.ico">
+<meta name="msapplication-config" content="/lib/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<meta name="format-detection" content="telephone=no">
+<!-- #BeginEditable "doctitle" -->
+<title>Hex to ASCII text converter</title>
+<meta content="Hex to ASCII text converter." name="description">
+<style>
+	.calc {	width:75%; padding:20px;}
+	.calc textarea { width:100%; font-size:large; }
+	.dtable th { position:sticky; top:0; background:#f0f0f0; }
+	.dtable td { width:90px;}
+	.dtable tr td { text-align:center; }
+	@media all and (max-width: 576px) {
+		#lcol { width:100%; }
+		.calc {	padding:15px; }
+		h1 { font-size:x-large; }
+	}
+	@media all and (max-width: 320px) {
+		.calc button img { display:none; }
+	}
+</style>
+
+
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="lcol">
+		<div id="doc">
+			<form name="calcform">
+				<table class="calc">
+					<tr>
+						<td><textarea name="hex" rows="8" cols="60" class="intext" placeholder="Hex input ..." tabindex="1" autofocus onkeydown="OnConvert()"></textarea></td>
+						<td><textarea name="txt" rows="8" cols="60" readonly="readonly" class="outtext" tabindex="5" placeholder="ASCII output ..."></textarea></td>
+					</tr>
+					<tr>
+						<td>
+							<button type="button" title="Convert" class="btn" tabindex="2" onkeyup="OnConvert()"> Convert</button>
+						</td>
+					</tr>
+					<tr>
+						
+					</tr>
+				</table>
+			</form>
+
+	
+			<script>
+				function OnConvert()
+				{
+					hex = document.calcform.hex.value;
+					hex = hex.match(/[0-9A-Fa-f]{2}/g);
+					len = hex.length;
+					if( len==0 ) return;
+					txt='';
+					for(i=0; i<len; i++)
+					{
+						h = hex[i];
+						code = parseInt(h,16);
+						t = String.fromCharCode(code);
+						txt += t;
+					}
+					document.calcform.txt.value = txt;
+				}
+			</script>
+		</div>
+	</div>
+</div>
+</body>
+</html>
